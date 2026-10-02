@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AartPay Admin - Super Command Center</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>body{font-family:'Outfit',sans-serif}</style>
+</head>
+<body class="bg-[#0A0A0A] text-white min-h-screen">
+<!-- HEADER -->
+<div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 flex justify-between items-center sticky top-0 z-50">
+  <h1 class="font-black text-xl">AARTPAY ADMIN</h1>
+  <div class="flex gap-2">
+    <span class="bg-green-500 text-xs px-3 py-1 rounded-full">LIVE</span>
+    <span class="bg-black/30 text-xs px-3 py-1 rounded-full">Super Admin</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 p-4">
+  <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl"><p class="text-zinc-400 text-xs">Total Revenue</p><h2 class="text-xl font-bold">₦2.4M</h2><p class="text-green-400 text-xs">+12% today</p></div>
+  <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl"><p class="text-zinc-400 text-xs">Pending Escrow</p><h2 class="text-xl font-bold">18</h2><p class="text-yellow-400 text-xs">Needs action</p></div>
+  <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl"><p class="text-zinc-400 text-xs">Temp Accounts</p><h2 class="text-xl font-bold">142</h2><p class="text-purple-400 text-xs">Active</p></div>
+  <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl"><p class="text-zinc-400 text-xs">Users</p><h2 class="text-xl font-bold">1,203</h2><p class="text-blue-400 text-xs">Online: 89</p></div>
+</div>
+
+<!-- TABS -->
+<div class="flex gap-2 overflow-x-auto p-4 no-scrollbar">
+  <button onclick="tab('escrow')" id="t-escrow" class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm">ESCROW</button>
+  <button onclick="tab('temp')" id="t-temp" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">TEMP ACCOUNT</button>
+  <button onclick="tab('card')" id="t-card" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">DOLLAR CARD</button>
+  <button onclick="tab('vtu')" id="t-vtu" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">VTU</button>
+  <button onclick="tab('gift')" id="t-gift" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">GIFT CARD</button>
+  <button onclick="tab('crypto')" id="t-crypto" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">CRYPTO</button>
+  <button onclick="tab('users')" id="t-users" class="bg-zinc-800 px-5 py-2 rounded-full font-bold text-sm">USERS</button>
+</div>
+
+<!-- CONTENT AREA -->
+<div class="p-4 space-y-3">
+
+<!-- ESCROW TAB -->
+<div id="c-escrow" class="space-y-3">
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800">
+    <div class="flex justify-between"><h3 class="font-bold">ESCROW #AP-8821</h3><span class="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded">PENDING</span></div>
+    <p class="text-sm text-zinc-400 mt-2">Buyer: @james • Seller: @tunde • Amount: ₦150,000</p>
+    <p class="text-xs text-zinc-500 mt-1">Product: iPhone 13 • Delivery: In Transit</p>
+    <div class="flex gap-2 mt-3"><button class="bg-green-600 flex-1 py-2 rounded-xl text-sm font-bold">Release Fund</button><button class="bg-red-600/20 text-red-400 flex-1 py-2 rounded-xl text-sm">Refund</button></div>
+  </div>
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800">
+    <div class="flex justify-between"><h3 class="font-bold">ESCROW #AP-8820</h3><span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">SHIPPED</span></div>
+    <p class="text-sm text-zinc-400 mt-2">Buyer: @sarah • Amount: ₦45,000</p>
+    <div class="flex gap-2 mt-3"><button class="bg-zinc-700 flex-1 py-2 rounded-xl text-sm">View Chat</button><button class="bg-white text-black flex-1 py-2 rounded-xl text-sm font-bold">Mark Delivered</button></div>
+  </div>
+</div>
+
+<!-- TEMP ACCOUNT TAB -->
+<div id="c-temp" class="hidden space-y-3">
+  <div class="bg-purple-600/10 border border-purple-600/30 p-4 rounded-2xl">
+    <h3 class="font-bold text-purple-300">Auto Temp Account System</h3>
+    <p class="text-xs text-zinc-400 mt-1">Each user gets unique Wema Bank account. Money auto-credits to wallet in 5 secs.</p>
+  </div>
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 flex justify-between items-center">
+    <div><p class="font-bold">8473920184</p><p class="text-xs text-zinc-500">User: @james • Balance: ₦20k</p></div><span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">ACTIVE</span>
+  </div>
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 flex justify-between items-center">
+    <div><p class="font-bold">8473920185</p><p class="text-xs text-zinc-500">User: @sarah • Expires: 24h</p></div><span class="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded">PENDING PAY</span>
+  </div>
+</div>
+
+<!-- DOLLAR CARD TAB -->
+<div id="c-card" class="hidden space-y-3">
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800">
+    <p class="font-bold">$27.50 USD Card Request</p><p class="text-xs text-zinc-400">User: @dave • For: Netflix • Rate: ₦1,620/$</p>
+    <button class="bg-white text-black w-full mt-3 py-2 rounded-xl font-bold text-sm">Create Virtual Card</button>
+  </div>
+</div>
+
+<!-- VTU TAB -->
+<div id="c-vtu" class="hidden space-y-3">
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800 flex justify-between"><div><p class="font-bold">MTN 5GB</p><p class="text-xs text-zinc-500">To: 0803... • User: @james</p></div><button class="bg-green-600 px-4 rounded-xl text-sm">Approve</button></div>
+</div>
+
+<!-- GIFT CARD -->
+<div id="c-gift" class="hidden space-y-3">
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800"><p class="font-bold">$100 iTunes</p><p class="text-xs text-zinc-400">Selling at ₦85k • Rate: 850</p><div class="flex gap-2 mt-2"><button class="bg-green-600 flex-1 py-2 rounded-xl text-sm">Approve</button><button class="bg-red-600/20 text-red-400 flex-1 py-2 rounded-xl text-sm">Decline</button></div></div>
+</div>
+
+<!-- CRYPTO -->
+<div id="c-crypto" class="hidden space-y-3">
+  <div class="bg-zinc-900 rounded-2xl p-4 border border-zinc-800"><p class="font-bold">BTC Sell - 0.002 BTC</p><p class="text-xs text-zinc-400">Expect: ₦95,000 • User: @crypto_king</p><button class="bg-white text-black w-full mt-3 py-2 rounded-xl text-sm font-bold">Confirm Payment</button></div>
+</div>
+
+<!-- USERS -->
+<div id="c-users" class="hidden space-y-3">
+  <input placeholder="Search user..." class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl text-sm">
+  <div class="bg-zinc-900 p-4 rounded-2xl flex justify-between items-center"><div><p class="font-bold">@james</p><p class="text-xs text-zinc-500">Balance: ₦150k • KYC: Verified</p></div><button class="bg-zinc-800 px-3 py-1 rounded-full text-xs">Block</button></div>
+</div>
+
+</div>
+
+<script>
+function tab(name){
+  document.querySelectorAll('[id^=\"c-\"]').forEach(e=>e.classList.add('hidden'));
+  document.getElementById('c-'+name).classList.remove('hidden');
+  document.querySelectorAll('[id^=\"t-\"]').forEach(e=>{e.classList.remove('bg-white','text-black'); e.classList.add('bg-zinc-800')});
+  document.getElementById('t-'+name).classList.remove('bg-zinc-800'); document.getElementById('t-'+name).classList.add('bg-white','text-black');
+}
+</script>
+</body>
+</html>
