@@ -1,131 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aart Pay - Nigeria's All-in-One Fintech</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#08080F;color:#fff;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(124,58,237,0.25),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(124,58,237,0.15),transparent 60%);pointer-events:none;z-index:-1}
-.header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(168,85,247,0.25);background:rgba(10,10,20,0.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:26px}
-.logo-i{width:38px;height:38px;background:linear-gradient(135deg,#a855f7,#7c3aed);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:grid;place-items:center;box-shadow:0 0 20px #a855f7}
-.nav{display:flex;gap:24px}
-.nav a{color:#9ca3af;text-decoration:none;font-size:14px;font-weight:500}
-.nav a.active{color:#a855f7;border-bottom:2px solid #a855f7;padding-bottom:4px}
-.hd-right{display:flex;gap:16px;align-items:center}
-.avatar{width:36px;height:36px;border-radius:50%;border:1.5px solid #a855f7;display:grid;place-items:center;background:rgba(168,85,247,0.2)}
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aart Pay</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}body{background:#0A0A12;color:#fff;padding-bottom:20px}
+.header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#0A0A12;border-bottom:1px solid #1E1E2D;position:sticky;top:0;z-index:10}
+.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:22px}.logo-icon{width:36px;height:36px;background:#8B5CF6;border-radius:12px;display:grid;place-items:center;transform:rotate(45deg)}.logo-icon span{transform:rotate(-45deg)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
+.card{background:#15151F;border:1px solid #232330;border-radius:20px;padding:18px 12px;text-align:center;cursor:pointer}.card:active{transform:scale(.96)}.card h3{font-size:13px;margin-top:8px;font-weight:700}.card p{font-size:11px;opacity:.5;margin-top:4px}
+.card.crypto{border-color:#22c55e55;background:#151F1A}.card.escrow{border-color:#f59e0b55;background:#1F1D15}.card.p2p{border-color:#38bdf855;background:#151A1F}
+.modal{position:fixed;inset:0;background:rgba(10,10,18,.95);backdrop-filter:blur(12px);z-index:50;display:none;padding:16px;overflow:auto}.modal.show{display:block}.modal-box{background:#15151F;border:1px solid #7C3AED;border-radius:24px;padding:20px;margin-top:30px}
+.input{width:100%;background:#0A0A12;border:1px solid #2A2A3A;border-radius:12px;padding:14px;color:#fff;margin-top:8px}.btn{width:100%;padding:14px;background:#7C3AED;border:none;border-radius:14px;color:#fff;font-weight:700;margin-top:12px;cursor:pointer}
+.vacc{background:#0F1A12;border:1px solid #22C55E;border-radius:16px;padding:14px;margin-top:12px;display:none}.vacc.show{display:block}
+.badge{background:#1E1E30;border:1px solid #2E2E45;padding:6px 12px;border-radius:20px;font-size:11px}
+</style></head><body>
+<div class="header"><div class="logo"><div class="logo-icon"><span>◆</span></div>Aart Pay</div><div style="display:flex;gap:14px;align-items:center;font-size:20px"><span>🎰</span><span>🔔</span><div style="width:32px;height:32px;background:#252538;border-radius:50%;border:1px solid #3A3A50;display:grid;place-items:center;font-size:14px">A</div></div></div>
 
-.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;padding:36px 32px}
-.hero h1{font-size:42px;line-height:1.1;font-weight:800;max-width:480px}
-.hero p{color:#9ca3af;font-size:14px;margin:14px 0 20px;max-width:520px;line-height:1.6}
-.btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-p{background:#7c3aed;color:#fff;padding:12px 22px;border-radius:10px;border:none;font-weight:600;cursor:pointer;box-shadow:0 0 20px rgba(124,58,237,0.5)}
-.btn-o{background:transparent;color:#fff;padding:12px 22px;border-radius:10px;border:1px solid rgba(168,85,247,0.4);font-weight:600;cursor:pointer}
-.badges{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-.badge{font-size:11px;color:#cbd5e1;background:rgba(30,25,60,0.9);border:1px solid rgba(168,85,247,0.25);padding:8px 10px;border-radius:8px;display:flex;align-items:center;gap:6px}
+<div class="grid">
+<div class="card" onclick="alert('📱 Airtime: MTN • Glo • Airtel • 9mobile - Instant')"><div style="font-size:22px">📱</div><h3>Airtime Top-up</h3><p>MTN • Glo • Airtel • 9mobile</p></div>
+<div class="card" onclick="alert('🌐 Data Bundle: All networks instant')"><div style="font-size:22px">🌐</div><h3>Data Bundle</h3><p>All Networks • Instant</p></div>
+<div class="card" onclick="alert('💡 Electricity: IKEDC • EKEDC • AEDC • PHED')"><div style="font-size:22px">💡</div><h3>Electricity</h3><p>IKEDC • EKEDC • AEDC</p></div>
+<div class="card" onclick="alert('📺 TV: DStv • GOtv • StarTimes')"><div style="font-size:22px">📺</div><h3>TV Subscriptions</h3><p>DStv • GOtv • StarTimes</p></div>
+<div class="card crypto" onclick="openModal('cryptoModal')"><div style="font-size:24px">₿</div><h3>Crypto Trade</h3><p>BTC • USDT • ETH • Buy/Sell</p></div>
+<div class="card escrow" onclick="openModal('escrowModal')"><div style="font-size:24px">🛡️</div><h3>Escrow Service</h3><p>Temp Account • Auto Release</p></div>
+<div class="card p2p" onclick="openModal('p2pModal')"><div style="font-size:24px">🔄</div><h3>P2P Trading</h3><p>Buy & Sell • 100% Safe</p></div>
+<div class="card"><div style="font-size:22px">⚽</div><h3>Betting Funding</h3><p>Bet365 • SportyBet • 1xbet</p></div>
+<div class="card"><div style="font-size:22px">💧</div><h3>Utilities</h3><p>Water • Internet • Cable</p></div>
+<div class="card"><div style="font-size:22px">🏦</div><h3>Instant Withdrawal</h3><p>24/7 via Flutterwave</p></div>
+</div>
 
-.balance{background:linear-gradient(180deg,#17111f,#0e0b15);border:1px solid rgba(168,85,247,0.4);border-radius:16px;padding:20px;box-shadow:0 0 35px rgba(168,85,247,0.25);position:relative}
-.balance::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,#a855f7,transparent);box-shadow:0 0 12px #a855f7}
-.balance small{color:#9ca3af;font-size:12px}
-.balance .big{font-size:38px;font-weight:800;margin:6px 0}
-.row2{display:flex;justify-content:space-between;margin:16px 0 18px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px}
-.row2 b{font-size:22px}
-.withdraw{width:100%;background:#7c3aed;border:none;color:#fff;padding:14px;border-radius:10px;font-weight:700;box-shadow:0 0 20px rgba(124,58,237,0.5);cursor:pointer}
-.powered{text-align:right;color:#9ca3af;font-size:12px;margin-top:10px}
-.powered span{color:#fff;font-weight:700}
+<div style="margin:10px 16px;background:#12121F;border:1px solid #7C3AED44;border-radius:20px;padding:14px;text-align:center">
+<p style="font-size:12px;opacity:.6">✔️ 24/7 Instant • 36 States Coverage • 100% Banks Supported via Flutterwave</p>
+</div>
 
-.services{padding:10px 32px 40px}
-.services h2{font-size:22px;margin-bottom:14px}
-.services h2 span{color:#9ca3af;font-weight:400;font-size:16px;margin-left:8px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{background:rgba(18,14,30,0.9);border:1px solid rgba(168,85,247,0.22);border-radius:12px;padding:16px;text-align:center;transition:0.2s}
-.card:hover{border-color:#a855f7;box-shadow:0 0 20px rgba(168,85,247,0.25)}
-.card .ic{font-size:28px;color:#a78bfa;margin-bottom:8px}
-.card h4{font-size:14px}
-.card p{font-size:11px;color:#9ca3af;margin-top:4px}
-.highlight{border-color:#a855f7 !important;box-shadow:0 0 30px rgba(168,85,247,0.5);position:relative}
-.pill{position:absolute;top:-10px;right:12px;background:#1f1635;border:1px solid #a855f755;color:#a78bfa;font-size:11px;padding:4px 10px;border-radius:20px}
+<!-- ESCROW MODAL - TEMP ACCOUNT + LOCK + AUTO RELEASE -->
+<div id="escrowModal" class="modal" onclick="if(event.target==this)closeModal('escrowModal')">
+<div class="modal-box">
+<div style="display:flex;justify-content:space-between"><h3>🛡️ Escrow Engine</h3><span onclick="closeModal('escrowModal')" style="cursor:pointer">✕</span></div>
+<p style="font-size:11px;opacity:.6;margin-top:6px">Seller asset locked → Buyer gets temp account → Auto release when payment enters</p>
 
-.nigeria{background:linear-gradient(180deg,#151025,#0d0b18);border:1.5px solid #a855f7;border-radius:16px;padding:16px;box-shadow:0 0 40px rgba(168,85,247,0.35)}
-.map{margin:12px 0;background:#0a0812;border-radius:10px;height:200px;display:grid;place-items:center;border:1px solid rgba(168,85,247,0.2);color:#a78bfa;font-size:12px}
+<label style="font-size:12px;margin-top:14px;display:block">What Seller Wants to Sell (Locked)</label>
+<select class="input" id="aType"><option>500 USDT - Tether</option><option>0.05 BTC - Bitcoin</option><option>2 ETH - Ethereum</option><option>₦750,000 Product/Service Value</option></select>
+<input class="input" id="aAmt" placeholder="Amount e.g. 500 USDT">
+<input class="input" id="price" placeholder="Buyer will pay (Naira) e.g. 850000">
 
-@media(max-width:1000px){
-.hero{grid-template-columns:1fr}
-.grid{grid-template-columns:1fr 1fr}
-.header{padding:0 16px}
-.nav{display:none}
-.hero h1{font-size:32px}
-.hero,.services{padding-left:16px;padding-right:16px}
+<button class="btn" onclick="genEscrow()">🔒 Lock Asset & Generate Temp Account</button>
+
+<div id="vBox" class="vacc">
+<p style="font-size:11px;color:#22C55E;font-weight:700">✅ ASSET LOCKED & SECURED</p>
+<div style="background:#000;border-radius:12px;padding:14px;margin-top:10px;text-align:center">
+<div style="font-size:10px;opacity:.6">Wema Bank - Aart Pay Escrow (Temporary)</div>
+<div style="font-size:22px;font-weight:800;letter-spacing:2px;margin:6px 0" id="acc">815 302 9471</div>
+<div style="font-size:11px">Account Name: Escrow TRX <span id="trx">AP293</span></div>
+<div style="font-size:13px;margin-top:8px;color:#f59e0b;font-weight:700">Pay: ₦<span id="pay">850,000</span></div>
+</div>
+<p style="font-size:11px;margin-top:10px;line-height:1.5">Buyer must pay to this temp account within 15 mins. Once payment enters, system will automatically release locked asset to buyer and credit seller Naira instantly via Flutterwave. No scam possible.</p>
+<div id="estat" style="margin-top:10px;font-size:11px"><span class="badge">🔴 Live Monitoring</span> <span class="badge">⏳ Waiting for payment...</span></div>
+<button class="btn" style="background:#15151F;border:1px solid #22C55E;margin-top:10px" onclick="simulate()">🧪 Simulate Buyer Payment Received</button>
+</div>
+</div></div>
+
+<!-- P2P MODAL -->
+<div id="p2pModal" class="modal" onclick="if(event.target==this)closeModal('p2pModal')">
+<div class="modal-box"><div style="display:flex;justify-content:space-between"><h3>🔄 P2P Marketplace</h3><span onclick="closeModal('p2pModal')" style="cursor:pointer">✕</span></div>
+<p style="font-size:11px;opacity:.6">Buy & Sell Crypto/Services with Escrow protection</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+<div style="background:#0A0A12;border:1px solid #22c55e44;border-radius:12px;padding:12px;text-align:center"><div style="color:#22c55e;font-weight:800">BUY USDT</div><div style="font-size:11px;margin-top:4px">₦1,680 per $</div><div style="font-size:10px;opacity:.5">Escrow Protected</div></div>
+<div style="background:#0A0A12;border:1px solid #f59e0b44;border-radius:12px;padding:12px;text-align:center"><div style="color:#f59e0b;font-weight:800">SELL BTC</div><div style="font-size:11px;margin-top:4px">₦98M per BTC</div><div style="font-size:10px;opacity:.5">Escrow Protected</div></div>
+</div>
+<button class="btn" onclick="alert('P2P Order Created! Escrow will lock asset and generate temp account for buyer - same flow as Escrow page')">Create P2P Order + Escrow</button>
+</div></div>
+
+<!-- CRYPTO MODAL -->
+<div id="cryptoModal" class="modal" onclick="if(event.target==this)closeModal('cryptoModal')">
+<div class="modal-box"><div style="display:flex;justify-content:space-between"><h3>₿ Crypto Trade</h3><span onclick="closeModal('cryptoModal')" style="cursor:pointer">✕</span></div>
+<p style="font-size:11px;opacity:.6">Buy/Sell BTC, USDT, ETH - Instant to Bank</p>
+<div style="margin-top:12px;background:#0A0A12;border-radius:12px;padding:12px;display:flex;justify-content:space-between"><span>USDT</span><span style="color:#22c55e">₦1,680</span></div>
+<div style="margin-top:8px;background:#0A0A12;border-radius:12px;padding:12px;display:flex;justify-content:space-between"><span>BTC</span><span style="color:#22c55e">₦98,450,000</span></div>
+<button class="btn" onclick="alert('Connect to backend API for real trading')">Buy / Sell Now</button>
+</div></div>
+
+<script>
+function openModal(id){document.getElementById(id).classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function genEscrow(){
+ const price=document.getElementById('price').value||'850000';
+ document.getElementById('pay').innerText=Number(price.replace(/,/g,'')).toLocaleString();
+ document.getElementById('acc').innerText='815'+Math.floor(Math.random()*9000000+1000000).toString().slice(0,7);
+ document.getElementById('trx').innerText='AP'+Math.floor(Math.random()*900+100);
+ document.getElementById('vBox').classList.add('show');
+ document.getElementById('vBox').scrollIntoView({behavior:'smooth'});
 }
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <div class="logo"><div class="logo-i">◆</div> Aart Pay</div>
-  <div class="nav"><a class="active" href="#">Dashboard</a><a href="#">Wallet</a><a href="#">Transactions</a><a href="#">Services</a><a href="#">Support</a><a href="#">Docs</a></div>
-  <div class="hd-right"><div>🔔</div><div class="avatar">A</div></div>
-</div>
-
-<div class="hero">
-  <div>
-    <h1>Nigeria's All-in-One Fintech Platform</h1>
-    <p>24/7 Instant Bank Withdrawals via Flutterwave. Secure, fast, and reliable withdrawals to your Nigerian bank account — available 24/7, anytime, anywhere.</p>
-    <div class="btns"><button class="btn-p">Withdraw Now →</button><button class="btn-o">Add Funds →</button></div>
-    <div class="badges">
-      <div class="badge">🛡️ Secure & Regulated</div>
-      <div class="badge">🎧 24/7 Support</div>
-      <div class="badge">⚡ Fast & Instant</div>
-      <div class="badge">🏦 Instant Withdrawal Enabled</div>
-    </div>
-  </div>
-
-  <div>
-    <div class="balance">
-      <small>Total Balance</small>
-      <div class="big">₦2,450,800.50</div>
-      <div style="color:#9ca3af;font-size:13px">💳 Wallet ***9921</div>
-      <div class="row2">
-        <div><small>Today's Cashout</small><br><b>₦125,000</b></div>
-        <div style="text-align:right"><small>This Month</small><br><b>₦1.62M</b></div>
-      </div>
-      <button class="withdraw">Instant Withdrawal To Bank Account →</button>
-    </div>
-    <div class="powered">Powered by <span> Flutterwave</span></div>
-  </div>
-</div>
-
-<div class="services">
-  <h2>Services <span>Everything you need to manage and move your money</span></h2>
-  <div class="grid">
-    <div class="card"><div class="ic">🎁</div><h4>Gift Cards</h4><p>Amazon, iTunes, Steam & more</p></div>
-    <div class="card"><div class="ic">🪙</div><h4>Crypto Trading</h4><p>Buy, sell & swap crypto instantly</p></div>
-    <div class="card"><div class="ic">💳</div><h4>Dollar Cards</h4><p>Virtual USD card for global payments</p></div>
-    <div class="card"><div class="ic">📺</div><h4>TV Subscriptions</h4><p>DStv • GOtv • StarTimes</p></div>
-    <div class="card"><div class="ic">⚡</div><h4>Electricity Bills</h4><p>Pay Ikeja, PHEDC, AEDC & more</p></div>
-    <div class="card"><div class="ic">📶</div><h4>Airtime & Data</h4><p>MTN • Airtel • Glo • 9mobile</p></div>
-    <div class="card"><div class="ic">📡</div><h4>TV Subscriptions</h4><p>DStv • GOtv • StarTimes</p></div>
-    <div class="card"><div class="ic">🎰</div><h4>Betting Funding</h4><p>Bet365 • SportyBet • 1xbet</p></div>
-    <div class="card"><div class="ic">💧</div><h4>Utilities</h4><p>Water • Internet • Cable</p></div>
-    <div class="card"><div class="ic">🎮</div><h4>Betting Funding</h4><p>Bet365 • SportyBet • 1xbet</p></div>
-    
-    <div class="card highlight" style="grid-column: span 2;">
-      <div class="pill">⚡ 24/7 Instant</div>
-      <h4 style="text-align:left">Instant Bank Withdrawal</h4>
-      <p style="text-align:left">24/7 via Flutterwave</p>
-      <div class="nigeria" style="margin-top:10px;padding:0;border:none;box-shadow:none">
-        <div style="display:flex;justify-content:space-between;align-items:center"><b>Nigeria Coverage</b><small style="background:#1f1635;padding:3px 8px;border-radius:12px;border:1px solid #a855f755">36 States • 24/7 Live</small></div>
-        <div class="map">🗺️ Nigeria Map • Abuja HQ • Lagos • Port Harcourt<br><br>All banks covered</div>
-        <small>coverage: 100%+ Nigerian Banks • Instant settlement</small><br>
-        <small style="color:#a78bfa">✔ 24/7 via Flutterwave — Instant to all Nigerian banks</small>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+function simulate(){
+ document.getElementById('estat').innerHTML='<span style="color:#22C55E">✅ Payment Confirmed! Auto Releasing...</span>';
+ setTimeout(()=>{alert('SUCCESS! 🔓 Asset released to buyer, Naira credited to seller via Flutterwave. Escrow Complete!');closeModal('escrowModal');},1200);
+}
+</script>
+</body></html>
