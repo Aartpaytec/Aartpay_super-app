@@ -1,137 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
-<title>AartPay - Super App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aart Pay - Nigeria's All-in-One Fintech</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--purple:#6C2EB5;--bg:#f7f5ff}
-body{margin:0;font-family:Inter,sans-serif;background:var(--bg);padding-bottom:80px}
-.top{background:var(--purple);color:white;padding:18px;border-radius:0 0 24px 24px}
-.wallet{background:white;color:black;border-radius:20px;padding:16px;margin-top:14px;display:flex;justify-content:space-between;align-items:center}
-.tabs{display:flex;gap:10px;overflow:auto;padding:14px}
-.tab{padding:10px 16px;background:white;border-radius:20px;white-space:nowrap;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.07)}
-.tab.active{background:var(--purple);color:white}
-.card{background:white;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.btn{background:var(--purple);color:white;padding:14px;border-radius:12px;text-align:center;font-weight:700;margin-top:10px;cursor:pointer}
-.input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0;box-sizing:border-box}
-.hidden{display:none}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
-.badge{background:#ffe9a8;padding:6px 10px;border-radius:8px;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#08080F;color:#fff;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(124,58,237,0.25),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(124,58,237,0.15),transparent 60%);pointer-events:none;z-index:-1}
+.header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(168,85,247,0.25);background:rgba(10,10,20,0.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:26px}
+.logo-i{width:38px;height:38px;background:linear-gradient(135deg,#a855f7,#7c3aed);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:grid;place-items:center;box-shadow:0 0 20px #a855f7}
+.nav{display:flex;gap:24px}
+.nav a{color:#9ca3af;text-decoration:none;font-size:14px;font-weight:500}
+.nav a.active{color:#a855f7;border-bottom:2px solid #a855f7;padding-bottom:4px}
+.hd-right{display:flex;gap:16px;align-items:center}
+.avatar{width:36px;height:36px;border-radius:50%;border:1.5px solid #a855f7;display:grid;place-items:center;background:rgba(168,85,247,0.2)}
+
+.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;padding:36px 32px}
+.hero h1{font-size:42px;line-height:1.1;font-weight:800;max-width:480px}
+.hero p{color:#9ca3af;font-size:14px;margin:14px 0 20px;max-width:520px;line-height:1.6}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-p{background:#7c3aed;color:#fff;padding:12px 22px;border-radius:10px;border:none;font-weight:600;cursor:pointer;box-shadow:0 0 20px rgba(124,58,237,0.5)}
+.btn-o{background:transparent;color:#fff;padding:12px 22px;border-radius:10px;border:1px solid rgba(168,85,247,0.4);font-weight:600;cursor:pointer}
+.badges{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.badge{font-size:11px;color:#cbd5e1;background:rgba(30,25,60,0.9);border:1px solid rgba(168,85,247,0.25);padding:8px 10px;border-radius:8px;display:flex;align-items:center;gap:6px}
+
+.balance{background:linear-gradient(180deg,#17111f,#0e0b15);border:1px solid rgba(168,85,247,0.4);border-radius:16px;padding:20px;box-shadow:0 0 35px rgba(168,85,247,0.25);position:relative}
+.balance::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,#a855f7,transparent);box-shadow:0 0 12px #a855f7}
+.balance small{color:#9ca3af;font-size:12px}
+.balance .big{font-size:38px;font-weight:800;margin:6px 0}
+.row2{display:flex;justify-content:space-between;margin:16px 0 18px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px}
+.row2 b{font-size:22px}
+.withdraw{width:100%;background:#7c3aed;border:none;color:#fff;padding:14px;border-radius:10px;font-weight:700;box-shadow:0 0 20px rgba(124,58,237,0.5);cursor:pointer}
+.powered{text-align:right;color:#9ca3af;font-size:12px;margin-top:10px}
+.powered span{color:#fff;font-weight:700}
+
+.services{padding:10px 32px 40px}
+.services h2{font-size:22px;margin-bottom:14px}
+.services h2 span{color:#9ca3af;font-weight:400;font-size:16px;margin-left:8px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:rgba(18,14,30,0.9);border:1px solid rgba(168,85,247,0.22);border-radius:12px;padding:16px;text-align:center;transition:0.2s}
+.card:hover{border-color:#a855f7;box-shadow:0 0 20px rgba(168,85,247,0.25)}
+.card .ic{font-size:28px;color:#a78bfa;margin-bottom:8px}
+.card h4{font-size:14px}
+.card p{font-size:11px;color:#9ca3af;margin-top:4px}
+.highlight{border-color:#a855f7 !important;box-shadow:0 0 30px rgba(168,85,247,0.5);position:relative}
+.pill{position:absolute;top:-10px;right:12px;background:#1f1635;border:1px solid #a855f755;color:#a78bfa;font-size:11px;padding:4px 10px;border-radius:20px}
+
+.nigeria{background:linear-gradient(180deg,#151025,#0d0b18);border:1.5px solid #a855f7;border-radius:16px;padding:16px;box-shadow:0 0 40px rgba(168,85,247,0.35)}
+.map{margin:12px 0;background:#0a0812;border-radius:10px;height:200px;display:grid;place-items:center;border:1px solid rgba(168,85,247,0.2);color:#a78bfa;font-size:12px}
+
+@media(max-width:1000px){
+.hero{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr 1fr}
+.header{padding:0 16px}
+.nav{display:none}
+.hero h1{font-size:32px}
+.hero,.services{padding-left:16px;padding-right:16px}
+}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div class='top'>
-<div style="display:flex;justify-content:space-between"><b>AartPay</b><span>🔔</span></div>
-<div class='wallet'>
-<div><small>Wallet Balance</small><h2 style="margin:4px 0">$12,450.30 <small style="font-size:14px">≈ ₦18,675,450</small></h2></div>
-<div style="background:var(--purple);color:white;padding:8px 12px;border-radius:10px">+$</div>
-</div>
+<div class="header">
+  <div class="logo"><div class="logo-i">◆</div> Aart Pay</div>
+  <div class="nav"><a class="active" href="#">Dashboard</a><a href="#">Wallet</a><a href="#">Transactions</a><a href="#">Services</a><a href="#">Support</a><a href="#">Docs</a></div>
+  <div class="hd-right"><div>🔔</div><div class="avatar">A</div></div>
 </div>
 
-<div class='tabs'>
-<div class='tab active' onclick="openF('gift')">Gift Cards</div>
-<div class='tab' onclick="openF('crypto')">Crypto</div>
-<div class='tab' onclick="openF('escrow')">Escrow</div>
-<div class='tab' onclick="openF('card')">Dollar Card</div>
-<div class='tab' onclick="openF('vtu')">Airtime/Data</div>
-<div class='tab' onclick="openF('bills')">Bills</div>
+<div class="hero">
+  <div>
+    <h1>Nigeria's All-in-One Fintech Platform</h1>
+    <p>24/7 Instant Bank Withdrawals via Flutterwave. Secure, fast, and reliable withdrawals to your Nigerian bank account — available 24/7, anytime, anywhere.</p>
+    <div class="btns"><button class="btn-p">Withdraw Now →</button><button class="btn-o">Add Funds →</button></div>
+    <div class="badges">
+      <div class="badge">🛡️ Secure & Regulated</div>
+      <div class="badge">🎧 24/7 Support</div>
+      <div class="badge">⚡ Fast & Instant</div>
+      <div class="badge">🏦 Instant Withdrawal Enabled</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="balance">
+      <small>Total Balance</small>
+      <div class="big">₦2,450,800.50</div>
+      <div style="color:#9ca3af;font-size:13px">💳 Wallet ***9921</div>
+      <div class="row2">
+        <div><small>Today's Cashout</small><br><b>₦125,000</b></div>
+        <div style="text-align:right"><small>This Month</small><br><b>₦1.62M</b></div>
+      </div>
+      <button class="withdraw">Instant Withdrawal To Bank Account →</button>
+    </div>
+    <div class="powered">Powered by <span> Flutterwave</span></div>
+  </div>
 </div>
 
-<!-- GIFT CARD -->
-<div id="gift" class="card">
-<h3>Gift Card Trading</h3>
-<select class="input"><option>Amazon</option><option>Steam</option><option>Google Play</option><option>Apple</option></select>
-<input class="input" placeholder="Card Amount $100">
-<input class="input" placeholder="Upload card code/image">
-<div class="btn" onclick="createTemp('gift', 95000)">Sell - Get Temp Account</div>
+<div class="services">
+  <h2>Services <span>Everything you need to manage and move your money</span></h2>
+  <div class="grid">
+    <div class="card"><div class="ic">🎁</div><h4>Gift Cards</h4><p>Amazon, iTunes, Steam & more</p></div>
+    <div class="card"><div class="ic">🪙</div><h4>Crypto Trading</h4><p>Buy, sell & swap crypto instantly</p></div>
+    <div class="card"><div class="ic">💳</div><h4>Dollar Cards</h4><p>Virtual USD card for global payments</p></div>
+    <div class="card"><div class="ic">📺</div><h4>TV Subscriptions</h4><p>DStv • GOtv • StarTimes</p></div>
+    <div class="card"><div class="ic">⚡</div><h4>Electricity Bills</h4><p>Pay Ikeja, PHEDC, AEDC & more</p></div>
+    <div class="card"><div class="ic">📶</div><h4>Airtime & Data</h4><p>MTN • Airtel • Glo • 9mobile</p></div>
+    <div class="card"><div class="ic">📡</div><h4>TV Subscriptions</h4><p>DStv • GOtv • StarTimes</p></div>
+    <div class="card"><div class="ic">🎰</div><h4>Betting Funding</h4><p>Bet365 • SportyBet • 1xbet</p></div>
+    <div class="card"><div class="ic">💧</div><h4>Utilities</h4><p>Water • Internet • Cable</p></div>
+    <div class="card"><div class="ic">🎮</div><h4>Betting Funding</h4><p>Bet365 • SportyBet • 1xbet</p></div>
+    
+    <div class="card highlight" style="grid-column: span 2;">
+      <div class="pill">⚡ 24/7 Instant</div>
+      <h4 style="text-align:left">Instant Bank Withdrawal</h4>
+      <p style="text-align:left">24/7 via Flutterwave</p>
+      <div class="nigeria" style="margin-top:10px;padding:0;border:none;box-shadow:none">
+        <div style="display:flex;justify-content:space-between;align-items:center"><b>Nigeria Coverage</b><small style="background:#1f1635;padding:3px 8px;border-radius:12px;border:1px solid #a855f755">36 States • 24/7 Live</small></div>
+        <div class="map">🗺️ Nigeria Map • Abuja HQ • Lagos • Port Harcourt<br><br>All banks covered</div>
+        <small>coverage: 100%+ Nigerian Banks • Instant settlement</small><br>
+        <small style="color:#a78bfa">✔ 24/7 via Flutterwave — Instant to all Nigerian banks</small>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- CRYPTO -->
-<div id="crypto" class="card hidden">
-<h3>Buy/Sell Crypto - Auto Temp Account</h3>
-<select class="input" id="coin"><option>BTC</option><option>USDT</option><option>ETH</option></select>
-<input class="input" id="cryptoAmount" placeholder="Amount in Naira e.g 250000">
-<div class="btn" onclick="createTemp('crypto', document.getElementById('cryptoAmount').value)">Create Temp Account to Pay</div>
-<div id="cryptoTemp" class="hidden" style="margin-top:12px;background:#f0e6ff;padding:12px;border-radius:12px">
-<b>Transfer to this TEMP account:</b><br>
-Account No: <b id="tempAcc">90XXXXXXXXXX</b><br>
-Bank: Wema Bank (Flutterwave)<br>
-Amount: <b id="tempAmt">₦0</b><br>
-<span class="badge">Asset releases AUTOMATIC when money enters</span>
-</div>
-</div>
-
-<!-- ESCROW -->
-<div id="escrow" class="card hidden">
-<h3>Escrow Service + Chat</h3>
-<input class="input" placeholder="What are you buying? e.g iPhone 14">
-<input class="input" placeholder="Seller Email">
-<input class="input" id="escrowAmt" placeholder="Amount ₦">
-<div class="btn" onclick="createTemp('escrow', document.getElementById('escrowAmt').value)">Create Escrow + Temp Account</div>
-<div id="escrowTemp" class="hidden" style="margin-top:12px;background:#fff3cd;padding:12px;border-radius:12px">
-<b>Escrow Temp Account Created</b><br>
-Acc: <b id="escrowAcc">90XXXXXXXXXX</b><br>
-Send money here - seller will be notified.<br>
-Chat: <div style="background:white;padding:8px;border-radius:8px;margin-top:6px">Escrow chat will appear here after payment...</div>
-<span class="badge">Money locked till buyer confirms</span>
-</div>
-</div>
-
-<!-- DOLLAR CARD -->
-<div id="card" class="card hidden">
-<h3>Virtual Dollar Card</h3>
-<input class="input" placeholder="Amount $ e.g 50">
-<div class="btn">Create Card - $3 Fee</div>
-<div style="margin-top:10px;background:black;color:white;padding:12px;border-radius:12px">**** **** **** 4589<br>Balance: $120.00</div>
-</div>
-
-<!-- VTU -->
-<div id="vtu" class="card hidden">
-<h3>Airtime & Data - VTU.ng</h3>
-<input class="input" placeholder="Phone Number">
-<select class="input"><option>MTN</option><option>Airtel</option><option>Glo</option><option>9mobile</option></select>
-<input class="input" placeholder="Amount">
-<div class="btn">Buy Now - Instant</div>
-</div>
-
-<!-- BILLS -->
-<div id="bills" class="card hidden">
-<h3>Bills - DStv, Electricity, etc</h3>
-<select class="input"><option>DStv</option><option>GOtv</option><option>Electricity - IKEDC</option></select>
-<input class="input" placeholder="IUC / Meter No">
-<input class="input" placeholder="Amount">
-<div class="btn">Pay Bill</div>
-</div>
-
-<div class='bottom'>
-<span>🏠 Home</span><span>📊 Market</span><span>💬 Escrow</span><span>👤 Profile</span>
-</div>
-
-<script>
-function openF(id){
- document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- event.target.classList.add('active');
-}
-function createTemp(feature, amount){
- if(!amount) amount = "95,000";
- const acc = "9" + Math.floor(Math.random()*900000000+100000000);
- if(feature==='crypto'){
-   document.getElementById('cryptoTemp').classList.remove('hidden');
-   document.getElementById('tempAcc').innerText = acc;
-   document.getElementById('tempAmt').innerText = "₦"+amount;
- }
- if(feature==='escrow'){
-   document.getElementById('escrowTemp').classList.remove('hidden');
-   document.getElementById('escrowAcc').innerText = acc;
- }
- if(feature==='gift'){
-   alert("Temp Account: "+acc+" - Wema Bank - Send ₦"+amount+" and gift card will be verified automatically");
- }
- // In real app: fetch('/api/create-temp-account', {method:'POST', body: JSON.stringify({feature, amount})})
-}
-</script>
 </body>
 </html>
