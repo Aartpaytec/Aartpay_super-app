@@ -1,18 +1,126 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aart Pay</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}body{background:#0A0A12;color:#fff;padding-bottom:20px}.header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#0A0A12;border-bottom:1px solid #1E1E2D;position:sticky;top:0;z-index:10}.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:22px}.logo-icon{width:36px;height:36px;background:#8B5CF6;border-radius:12px;display:grid;place-items:center;transform:rotate(45deg)}.logo-icon span{transform:rotate(-45deg)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}.card{background:#15151F;border:1px solid #232330;border-radius:20px;padding:18px 12px;text-align:center}.card h3{font-size:13px;margin-top:8px}.card p{font-size:11px;opacity:.5;margin-top:4px}.card.crypto{border-color:#22c55e55;background:#151F1A}.card.escrow{border-color:#f59e0b55;background:#1F1D15}.card.p2p{border-color:#38bdf855;background:#151A1F}.modal{position:fixed;inset:0;background:rgba(10,10,18,.95);backdrop-filter:blur(12px);z-index:50;display:none;padding:16px;overflow:auto}.modal.show{display:block}.modal-box{background:#15151F;border:1px solid #7C3AED;border-radius:24px;padding:20px;margin-top:30px}.input{width:100%;background:#0A0A12;border:1px solid #2A2A3A;border-radius:12px;padding:14px;color:#fff;margin-top:8px}.btn{width:100%;padding:14px;background:#7C3AED;border:none;border-radius:14px;color:#fff;font-weight:700;margin-top:12px}.vacc{background:#0F1A12;border:1px solid #22C55E;border-radius:16px;padding:14px;margin-top:12px;display:none}.vacc.show{display:block}.badge{background:#1E1E30;border:1px solid #2E2E45;padding:6px 12px;border-radius:20px;font-size:11px}</style></head><body>
-<div class="header"><div class="logo"><div class="logo-icon"><span>◆</span></div>Aart Pay</div><div style="display:flex;gap:14px;align-items:center;font-size:20px"><span>🎰</span><span>🔔</span><div style="width:32px;height:32px;background:#252538;border-radius:50%;border:1px solid #3A3A50;display:grid;place-items:center;font-size:14px">A</div></div></div>
-<div class="grid">
-<div class="card" onclick="alert('Airtime')"><div>📱</div><h3>Airtime Top-up</h3><p>MTN • Glo • Airtel • 9mobile</p></div>
-<div class="card" onclick="alert('Data')"><div>🌐</div><h3>Data Bundle</h3><p>All Networks</p></div>
-<div class="card" onclick="alert('Electricity')"><div>💡</div><h3>Electricity</h3><p>IKEDC • EKEDC • AEDC</p></div>
-<div class="card" onclick="alert('TV')"><div>📺</div><h3>TV Subscriptions</h3><p>DStv • GOtv • StarTimes</p></div>
-<div class="card crypto" onclick="openModal('cryptoModal')"><div>₿</div><h3>Crypto Trade</h3><p>BTC • USDT • ETH</p></div>
-<div class="card escrow" onclick="openModal('escrowModal')"><div>🛡️</div><h3>Escrow Service</h3><p>Temp Account • Auto Release</p></div>
-<div class="card p2p" onclick="openModal('p2pModal')"><div>🔄</div><h3>P2P Trading</h3><p>Buy & Sell • Safe</p></div>
-<div class="card"><div>⚽</div><h3>Betting Funding</h3><p>Bet365 • SportyBet • 1xbet</p></div>
-<div class="card"><div>💧</div><h3>Utilities</h3><p>Water • Internet</p></div>
-<div class="card"><div>🏦</div><h3>Instant Withdrawal</h3><p>24/7 via Flutterwave</p></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Aart Pay Super App - Final</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
+body{background:#080808;color:#fff;padding:14px;padding-bottom:90px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:6px 0 16px}
+.logo{font-weight:900;font-size:22px;letter-spacing:1px}.logo span{color:#ec4899}
+.bal{background:linear-gradient(135deg,#ec4899 0%,#8b5cf6 50%,#3b82f6 100%);border-radius:20px;padding:18px;position:relative;overflow:hidden}
+.bal h1{font-size:28px;margin:6px 0}.bal p{font-size:12px;opacity:.9}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.card{background:#151515;border:1px solid #242424;border-radius:18px;padding:14px;cursor:pointer;transition:.2s}
+.card:active{transform:scale(.97)}.card .ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:8px}
+.card h3{font-size:12.5px;line-height:1.2}.card p{font-size:10px;color:#8a8a8a;margin-top:4px}
+.card.new{border-color:#ec4899aa;background:linear-gradient(180deg,#1a1216,#151515)}
+.badge{background:#ec4899;color:#fff;font-size:8px;padding:2px 6px;border-radius:20px;margin-left:4px;vertical-align:middle}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:100;display:none;align-items:end}
+.modal.active{display:flex}.sheet{background:#121212;width:100%;border-radius:28px 28px 0 0;padding:22px;border:1px solid #2a2a2a;max-height:85vh;overflow:auto}
+.input{width:100%;background:#000;border:1px solid #2a2a2a;border-radius:14px;padding:14px;color:#fff;margin-top:10px;outline:none}
+.btn{width:100%;background:#ec4899;border:none;padding:15px;border-radius:14px;color:#fff;font-weight:800;margin-top:14px;font-size:14px}
+.btn2{background:#222}
+.vcard{background:linear-gradient(135deg,#1e1b4b,#312e81,#4f46e5);border-radius:18px;padding:18px;margin:14px 0;border:1px solid #4338ca44}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo">AART<span>PAY</span></div><div style="display:flex;gap:12px"><span>🔍</span><span>🔔</span></div></div>
+
+<div class="bal">
+<p>WALLET BALANCE • Escrow Protected</p><h1>₦42,500.00</h1>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button style="background:#fff;color:#000;border:none;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700">+ Fund</button>
+<button style="background:rgba(255,255,255,.2);color:#fff;border:none;padding:8px 14px;border-radius:20px;font-size:12px">Transfer</button>
 </div>
-<div id="escrowModal" class="modal" onclick="if(event.target==this)closeModal('escrowModal')"><div class="modal-box"><div style="display:flex;justify-content:space-between"><h3>🛡️ Escrow Engine</h3><span onclick="closeModal('escrowModal')">✕</span></div><p style="font-size:11px;opacity:.6;margin-top:6px">Lock asset → Temp account → Auto release when paid</p><select class="input" id="aType"><option>500 USDT</option><option>0.05 BTC</option><option>2 ETH</option><option>₦750k Product</option></select><input class="input" id="aAmt" placeholder="Amount e.g. 500 USDT"><input class="input" id="price" placeholder="Buyer pay e.g. 850000"><button class="btn" onclick="genEscrow()">🔒 Lock & Generate Temp Account</button><div id="vBox" class="vacc"><p style="font-size:11px;color:#22C55E;font-weight:700">✅ ASSET LOCKED</p><div style="background:#000;border-radius:12px;padding:14px;margin-top:10px;text-align:center"><div style="font-size:10px;opacity:.6">Wema Bank - Aart Pay Escrow (Temp)</div><div style="font-size:22px;font-weight:800;letter-spacing:2px;margin:6px 0" id="acc">815 302 9471</div><div style="font-size:11px">Name: Escrow TRX <span id="trx">AP293</span></div><div style="font-size:13px;margin-top:8px;color:#f59e0b;font-weight:700">Pay: ₦<span id="pay">850,000</span></div></div><div id="estat" style="margin-top:10px;font-size:11px">⏳ Waiting for payment...</div><button class="btn" style="background:#15151F;border:1px solid #22C55E;margin-top:10px" onclick="simulate()">🧪 Simulate Payment</button></div></div></div>
-<div id="p2pModal" class="modal" onclick="if(event.target==this)closeModal('p2pModal')"><div class="modal-box"><h3>🔄 P2P</h3><button class="btn" onclick="alert('P2P + Escrow created')">Create P2P Order</button></div></div>
-<div id="cryptoModal" class="modal" onclick="if(event.target==this)closeModal('cryptoModal')"><div class="modal-box"><h3>₿ Crypto</h3><button class="btn">Trade Now</button></div></div>
-<script>function openModal(id){document.getElementById(id).classList.add('show')}function closeModal(id){document.getElementById(id).classList.remove('show')}function genEscrow(){const price=document.getElementById('price').value||'850000';document.getElementById('pay').innerText=Number(price.replace(/,/g,'')).toLocaleString();document.getElementById('acc').innerText='815'+Math.floor(Math.random()*9000000+1000000).toString().slice(0,7);document.getElementById('trx').innerText='AP'+Math.floor(Math.random()*900+100);document.getElementById('vBox').classList.add('show')}function simulate(){document.getElementById('estat').innerHTML='✅ Payment Confirmed! Auto Releasing...';setTimeout(()=>{alert('SUCCESS! Asset released, Naira sent via Flutterwave!');closeModal('escrowModal')},1200)}</script></body></html>
+</div>
+
+<div class="grid">
+<div class="card" onclick="toast('Airtime & Data')"><div class="ic" style="background:#1a2e1a">📱</div><h3>Airtime & Data</h3><p>MTN, Glo, Airtel, 9m</p></div>
+
+<div class="card new" onclick="openVC()"><div class="ic" style="background:#2a1a3a">💳</div><h3>Virtual Dollar Card <span class="badge">NEW</span></h3><p>Intl payments • $5.50</p></div>
+
+<div class="card" onclick="toast('Electricity')"><div class="ic" style="background:#2a2a1a">💡</div><h3>Electricity</h3><p>Prepaid & Postpaid</p></div>
+
+<div class="card" onclick="toast('TV')"><div class="ic" style="background:#1a1a2e">📺</div><h3>TV Subscription</h3><p>DSTV, GOTV, Startimes</p></div>
+
+<div class="card" onclick="toast('Crypto')"><div class="ic" style="background:#2e2a1a">₿</div><h3>Crypto Trade</h3><p>BTC, USDT Instant</p></div>
+
+<div class="card" style="border-color:#ec489955" onclick="toast('Escrow Service - Active')"><div class="ic" style="background:#2e1a1f">🛡️</div><h3>Escrow Service</h3><p>Temp Account • Auto Release</p></div>
+
+<div class="card" onclick="toast('P2P Trading')"><div class="ic" style="background:#1a2e2a">🤝</div><h3>P2P Trading</h3><p>Buy & Sell</p></div>
+
+<div class="card" onclick="toast('Betting')"><div class="ic" style="background:#1a2a1a">⚽</div><h3>Betting</h3><p>Fund Wallet</p></div>
+
+<div class="card" onclick="toast('Utilities')"><div class="ic" style="background:#2a1f1a">🧾</div><h3>Utilities</h3><p>Pay Bills</p></div>
+
+<div class="card" onclick="toast('Instant Withdrawal')"><div class="ic" style="background:#1a2e26">🏦</div><h3>Instant Withdrawal</h3><p>To Bank • 30s</p></div>
+
+<div class="card" onclick="toast('Droja Delivery')"><div class="ic" style="background:#1f1f1f">🚚</div><h3>Droja</h3><p>Fast Delivery • Ibadan</p></div>
+</div>
+
+<!-- VIRTUAL CARD MODAL -->
+<div id="vcModal" class="modal" onclick="if(event.target==this)closeVC()">
+<div class="sheet">
+<div style="width:40px;height:4px;background:#333;border-radius:20px;margin:0 auto 16px"></div>
+<h2 style="text-align:center">💳 Virtual Dollar Card</h2>
+<p style="text-align:center;color:#888;font-size:12px;margin-top:4px">Create USD card for Netflix, Ads, Apple, etc</p>
+
+<div id="cardView" style="display:none">
+<div class="vcard">
+<p style="font-size:10px;opacity:.7;letter-spacing:2px">AART PAY • VISA VIRTUAL</p>
+<h2 id="cardNum" style="margin:12px 0;letter-spacing:3px;font-size:18px">4514 •••• •••• ••••</h2>
+<div style="display:flex;justify-content:space-between;font-size:12px"><span id="cardName">YOUR NAME</span><span id="cardExp">12/28</span></div>
+<div style="display:flex;justify-content:space-between;margin-top:16px;align-items:center"><span>Balance: <b id="cardBal">$0.00</b></span><span style="background:#22c55e;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:800">ACTIVE</span></div>
+</div>
+<input id="fundAmt" class="input" type="number" placeholder="Fund amount $ (min $5)">
+<button class="btn" onclick="fundCard()">Fund Card</button>
+<button class="btn btn2" onclick="closeVC()">Close</button>
+</div>
+
+<div id="createView">
+<input id="fullName" class="input" placeholder="Full Name (as on NIN)">
+<input id="bvn" class="input" placeholder="BVN (11 digits)" maxlength="11">
+<input id="initAmt" class="input" type="number" placeholder="Initial funding $ (min $5)">
+<div style="background:#1a1a1a;border-radius:12px;padding:12px;margin-top:12px">
+<p style="font-size:11px;color:#aaa">✓ Works for Netflix, Spotify, Apple, Google, Facebook Ads, AliExpress<br>✓ Creation Fee: $5.50 ( ~₦8,500 )<br>✓ Funding Fee: 2% • Monthly: $1<br>✓ Requires BVN + NIN KYC</p>
+</div>
+<button class="btn" onclick="createVirtualCard()">Create My Dollar Card - $5.50</button>
+<button class="btn btn2" onclick="closeVC()">Cancel</button>
+</div>
+
+</div>
+</div>
+
+<script>
+function toast(m){alert(m+' - Coming Soon (Backend integration needed)')}
+function openVC(){document.getElementById('vcModal').classList.add('active')}
+function closeVC(){document.getElementById('vcModal').classList.remove('active')}
+function createVirtualCard(){
+ let name=document.getElementById('fullName').value.trim();
+ let bvn=document.getElementById('bvn').value.trim();
+ let amt=document.getElementById('initAmt').value;
+ if(!name || bvn.length!=11) return alert('Enter full name & valid 11-digit BVN');
+ if(!amt || amt<5) return alert('Minimum funding is $5');
+ let rand=()=>Math.floor(1000+Math.random()*9000);
+ let cardNo='4514 '+rand()+' '+rand()+' '+Math.floor(1000+Math.random()*9000);
+ document.getElementById('cardNum').innerText=cardNo;
+ document.getElementById('cardName').innerText=name.toUpperCase();
+ document.getElementById('cardBal').innerText='$'+amt+'.00';
+ document.getElementById('createView').style.display='none';
+ document.getElementById('cardView').style.display='block';
+ alert('✅ Virtual Dollar Card Created!\n\n'+cardNo+'\nName: '+name+'\n\nIn LIVE version, this will call Flutterwave API to create REAL card for international payments.');
+ localStorage.setItem('vcard',JSON.stringify({no:cardNo,name:name,bal:amt}));
+}
+function fundCard(){
+ let a=document.getElementById('fundAmt').value;
+ if(!a) return alert('Enter amount'); alert('✅ $'+a+' funded! (Demo - Connect Flutterwave LIVE API for real funding)');
+ let cur=parseFloat(document.getElementById('cardBal').innerText.replace('$','')); document.getElementById('cardBal').innerText='$'+(cur+parseFloat(a)).toFixed(2);
+}
+// Load saved card
+window.onload=()=>{
+ let s=localStorage.getItem('vcard'); if(s){let c=JSON.parse(s); document.getElementById('cardNum').innerText=c.no; document.getElementById('cardName').innerText=c.name; document.getElementById('cardBal').innerText='$'+c.bal+'.00'}
+}
+</script>
+</body>
+</html>
